@@ -11,9 +11,9 @@ if(isset($_POST['delete'])){
       exit;
   }
 }
-//if(isset($_GET['msg'])){
-  //$error_message = trim(filter_input(INPUT_GET, 'msg', FILTER_SANITIZE_STRING));
-//}
+if(isset($_GET['msg'])){
+  $error_message = trim(filter_input(INPUT_GET, 'msg', FILTER_SANITIZE_STRING));
+}
 
 ?>
 
@@ -36,6 +36,10 @@ if(isset($_POST['delete'])){
                           }
                             ?>
                     </article>
+              <?php        if (isset($error_message)){
+            echo "<p class='message'>$error_message</p>";
+        }
+        ?>
                 </div>
             </div>
         </section>
