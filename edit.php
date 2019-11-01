@@ -17,24 +17,24 @@ if($_SERVER['REQUEST_METHOD'] =='POST'){
     $id= trim(filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT));  //entry_id required????
     $title= trim(filter_input(INPUT_POST,'title',FILTER_SANITIZE_STRING));
     $date= trim(filter_input(INPUT_POST,'date',FILTER_SANITIZE_STRING));
-    $time_spent= trim(filter_input(INPUT_POST,'timeSpent',FILTER_SANITIZE_NUMBER_INT));
+    $time_spent= trim(filter_input(INPUT_POST,'timeSpent',FILTER_SANITIZE_STRING));
     $learned= trim(filter_input(INPUT_POST,'whatILearned',FILTER_SANITIZE_STRING));
     $resources= trim(filter_input(INPUT_POST,'ResourcesToRemember',FILTER_SANITIZE_STRING));
-
+//date check 
 
     $dateMatch= explode('-',$date);
 
  if (empty($title)||empty($date)||empty($id)) {
       $error_message = 'Please fill in required fields: Title and/or Date';
       echo "Please fill in required fields: Title and/or Date";
-  /*  }elseif(count($dateMatch) != 3
+  }elseif(count($dateMatch) != 3
          ||strlen($dateMatch[0])!= 4
          ||strlen($dateMatch[1])!= 2
          ||strlen($dateMatch[2])!= 2
-         ||!checkdate($dateMatch[0],$dateMatch[1],$dateMatch[2])){
+         ||!checkdate($dateMatch[1],$dateMatch[2],$dateMatch[0])){
     $error_message = "Invalid Date";
     echo "Please fill in required fields: Title and/or Date(YYYY-MM-DD)";
-*/}else{
+}else{
     if (add_entry($title,$date,$time_spent,$learned,$resources,$id)){
     echo 'Journal Entry updated.';
     header('Location: index.php');
@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] =='POST'){
     }
   }
 }
-
+//place holder text and remember text below 
 ?>
 
 
